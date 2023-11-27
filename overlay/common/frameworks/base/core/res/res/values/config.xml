@@ -543,8 +543,8 @@
     <!-- If supported, are dreams enabled? (by default) -->
     <bool name="config_dreamsEnabledByDefault">false</bool>
 
-    <!-- Name of the font family to use in the default lockscreen clock -->
-    <string name="config_clockFontFamily" translatable="false" />
+    <!-- AOD wallpaper -->
+    <bool name="config_dozeSupportsAodWallpaper">true</bool>
 
     <!-- Whether to enable glanceable hub features on this device. -->
     <bool name="config_glanceableHubEnabled">true</bool>
