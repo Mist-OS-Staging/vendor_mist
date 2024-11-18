@@ -1,63 +1,73 @@
-# (C) 2023-2024 RisingOS
+# (C) 2023-2024 MistOS
 
-# RisingOS versioning
+# MistOS versioning
 
 PRODUCT_SOONG_NAMESPACES += \
-    vendor/rising/version
+    vendor/mist/version
 
-RISING_FLAVOR := VanillaIceCream
-RISING_VERSION := 6.0
-RISING_CODENAME := Ascension
-RISING_RELEASE_TYPE := BETA
-RISING_CODE := $(RISING_VERSION)
+MIST_FLAVOR := VanillaIceCream
+MIST_VERSION := 3.0
+MIST_CODENAME := Nebula
+MIST_RELEASE_TYPE := BETA
+MIST_CODE := $(MIST_VERSION)
 
-RISING_BUILD_DATE := $(shell date -u +%Y%m%d)
+MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
 
 CURRENT_DEVICE := $(shell echo "$(TARGET_PRODUCT)" | cut -d'_' -f 2,3)
-MAINTAINER_LIST := $(shell cat vendor/risingOTA/risingOS.maintainers)
-DEVICE_LIST := $(shell cat vendor/risingOTA/risingOS.devices)
+MAINTAINER_LIST := $(shell cat mist-maintainers/mist.maintainers)
+DEVICE_LIST := $(shell cat mist-maintainers/mist.devices)
 
 ifeq ($(filter $(CURRENT_DEVICE),$(DEVICE_LIST)), $(CURRENT_DEVICE))
-    ifdef RISING_MAINTAINER
-        ifneq ($(filter $(RISING_MAINTAINER),$(MAINTAINER_LIST)),)
-            RISING_BUILDTYPE := OFFICIAL
+    ifdef MIST_MAINTAINER
+        ifneq ($(filter $(MIST_MAINTAINER),$(MAINTAINER_LIST)),)
+            MIST_BUILDTYPE := OFFICIAL
         else
-            RISING_BUILDTYPE := UNOFFICIAL
+        # Builder not an official maintainer, warn and set unofficial
+        $(warning **********************************************************************)
+        $(warning *   There is already an official maintainer for $(MIST_BUILD)    *)
+        $(warning *              Setting build type to UNOFFICIAL                      *)
+        $(warning **********************************************************************)
+            MIST_BUILDTYPE := UNOFFICIAL
         endif
     else
-        RISING_BUILDTYPE := UNOFFICIAL
+        MIST_BUILDTYPE := UNOFFICIAL
     endif
 else
-    RISING_BUILDTYPE := COMMUNITY
+    # Shouldn't reach here, error for unexpected situation
+    $(error **********************************************************)
+    $(error *     A violation has been detected, aborting build      *)
+    $(error *              Switching to Community build              *)
+    $(error **********************************************************)
+    MIST_BUILDTYPE := COMMUNITY
 endif
 
 ifeq ($(WITH_GMS), true)
 	ifeq ($(TARGET_CORE_GMS), true)
-    	RISING_PACKAGE_TYPE ?= CORE
-	else 
-    	RISING_PACKAGE_TYPE ?= GAPPS
+    	MIST_PACKAGE_TYPE ?= CORE
+	else
+    	MIST_PACKAGE_TYPE ?= GAPPS
 	endif
 else
-    RISING_PACKAGE_TYPE ?= VANILLA
+    MIST_PACKAGE_TYPE ?= VANILLA
 endif
 
 # Build version
-RISING_BUILD_VERSION := $(RISING_VERSION)-$(RISING_RELEASE_TYPE)-$(RISING_BUILD_DATE)-$(RISING_PACKAGE_TYPE)-$(RISING_BUILDTYPE)-$(CURRENT_DEVICE)
+MIST_BUILD_VERSION := $(MIST_VERSION)-$(MIST_RELEASE_TYPE)-$(MIST_BUILD_DATE)-$(MIST_PACKAGE_TYPE)-$(MIST_BUILDTYPE)-$(CURRENT_DEVICE)
 
 # Display version
-RISING_DISPLAY_VERSION := $(RISING_VERSION)-$(RISING_RELEASE_TYPE)-$(RISING_PACKAGE_TYPE)-$(RISING_BUILDTYPE)-$(CURRENT_DEVICE)
+MIST_DISPLAY_VERSION := $(MIST_VERSION)-$(MIST_RELEASE_TYPE)-$(MIST_PACKAGE_TYPE)-$(MIST_BUILDTYPE)-$(CURRENT_DEVICE)
 
-# RisingOS properties
+# MistOS properties
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.rising.code=$(RISING_CODENAME) \
-    ro.rising.packagetype=$(RISING_PACKAGE_TYPE) \
-    ro.rising.releasetype=$(RISING_BUILDTYPE) \
-    ro.rising.version?=$(RISING_VERSION) \
-    ro.rising.build.version=$(RISING_BUILD_VERSION) \
-    ro.rising.display.version?=$(RISING_DISPLAY_VERSION) \
-    ro.rising.platform_release_codename=$(RISING_FLAVOR) \
-    ro.rising.device=$(CURRENT_DEVICE) \
-    ro.rising.storage?=$(RISING_STORAGE) \
-    ro.rising.ram?=$(RISING_RAM) \
-    ro.rising.battery?=$(RISING_BATTERY) \
-    ro.rising.display_resolution?=$(RISING_DISPLAY)
+    ro.mist.code=$(MIST_CODENAME) \
+    ro.mist.packagetype=$(MIST_PACKAGE_TYPE) \
+    ro.mist.releasetype=$(MIST_BUILDTYPE) \
+    ro.mist.version?=$(MIST_VERSION) \
+    ro.mist.build.version=$(MIST_BUILD_VERSION) \
+    ro.mist.display.version?=$(MIST_DISPLAY_VERSION) \
+    ro.mist.platform_release_codename=$(MIST_FLAVOR) \
+    ro.mist.device=$(CURRENT_DEVICE) \
+    ro.mist.storage?=$(MIST_STORAGE) \
+    ro.mist.ram?=$(MIST_RAM) \
+    ro.mist.battery?=$(MIST_BATTERY) \
+    ro.mist.display_resolution?=$(MIST_DISPLAY)

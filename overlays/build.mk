@@ -15,7 +15,7 @@
 #
 
 PRODUCT_SOONG_NAMESPACES += \
-    vendor/rising/overlays
+    vendor/mist/overlays
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/permissions/privapp-permissions-google.xml

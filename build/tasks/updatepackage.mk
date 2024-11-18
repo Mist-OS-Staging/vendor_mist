@@ -14,32 +14,19 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# RisingOS fastboot update package
+# MistOS fastboot update package
 
-RISING_TARGET_UPDATEPACKAGE := $(PRODUCT_OUT)/RisingOS-$(RISING_BUILD_VERSION)-fastboot.zip
+MIST_TARGET_UPDATEPACKAGE := $(PRODUCT_OUT)/MistOS-$(MIST_BUILD_VERSION)-fastboot.zip
 
 .PHONY: updatepackage dinner
 updatepackage: $(DEFAULT_GOAL) $(INTERNAL_UPDATE_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_UPDATE_PACKAGE_TARGET) $(RISING_TARGET_UPDATEPACKAGE)
+	$(hide) ln -f $(INTERNAL_UPDATE_PACKAGE_TARGET) $(MIST_TARGET_UPDATEPACKAGE)
+	$(hide) ./vendor/mist/build/tasks/ascii_output.sh
 	@echo ""
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
-	@echo "  ______ _____ _______ _____ __   _  ______       _____  _______" >&2
-	@echo " |_____/   |   |______   |   | \  | |  ____      |     | |______" >&2
-	@echo " |    \_ __|__ ______| __|__ |  \_| |_____|      |_____| ______|" >&2
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
-	@echo "                   rising from the bottom                       " >&2
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
-	@echo "                                                                " >&2
 	@echo "****************************************************************" >&2
-	@echo " Size            : $(shell du -hs $(RISING_TARGET_UPDATEPACKAGE) | awk '{print $$1}')"
-	@echo " Size(in bytes)  : $(shell wc -c $(RISING_TARGET_UPDATEPACKAGE) | awk '{print $$1}')"
-	@echo " Package Complete: $(RISING_TARGET_UPDATEPACKAGE)               " >&2
+	@echo " Size            : $(shell du -hs $(MIST_TARGET_UPDATEPACKAGE) | awk '{print $$1}')"
+	@echo " Size(in bytes)  : $(shell wc -c $(MIST_TARGET_UPDATEPACKAGE) | awk '{print $$1}')"
+	@echo " Package Complete: $(MIST_TARGET_UPDATEPACKAGE)               " >&2
 	@echo "****************************************************************" >&2
 	@echo ""
 dinner: updatepackage

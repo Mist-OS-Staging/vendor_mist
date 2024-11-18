@@ -16,8 +16,8 @@
 # limitations under the License.
 #
 
-#$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=FILE_NAME, $4=RISING_VERSION, $5=RISING_CODENAME, $6=RISING_PACKAGE_TYPE, $7=RISING_RELEASE_TYPE
-existingOTAjson=./vendor/risingOTA/$1.json
+#$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=FILE_NAME, $4=MIST_VERSION, $5=MIST_CODENAME, $6=MIST_PACKAGE_TYPE, $7=MIST_RELEASE_TYPE
+existingOTAjson=./vendor/OTA/$1.json
 output=$2/${6}_$1.json
 major_version=$(echo $4 | cut -d'.' -f1)
 
@@ -35,7 +35,7 @@ if [ -f $existingOTAjson ]; then
 	oem=`grep -n "\"oem\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	device=`grep -n "\"device\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	filename=$3
-	download="https://sourceforge.net/projects/risingos-official/files/${major_version}.x/$6/$1/$filename/download"
+	download="https://sourceforge.net/projects/project-mistos/files/Android14/$1/$file_name/download"
 	version=`echo $4-$5`
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
@@ -158,7 +158,7 @@ else
 }' >> $output
 	cat $output
 	echo 'There is no official support for this device yet'
-	echo 'Consider adding official support by reading the documentation at https://github.com/RisingOSS-devices/android_vendor_RisingOTA/blob/fourteen/README.md'
+	echo 'Consider adding official support by mention your device developer'
 fi
 
 echo ""
