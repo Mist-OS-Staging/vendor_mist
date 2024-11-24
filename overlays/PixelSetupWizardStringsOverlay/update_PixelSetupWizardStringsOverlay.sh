@@ -48,8 +48,8 @@ for strings in $(find "${TMPDIR}"/out/ -name strings.xml); do
 
     echo '</resources>' >> "${target_path}"/strings.xml
 
-    sed -i "s|your Pixel|RisingOS|g" "${target_path}"/strings.xml &&
-    sed -i "s|Pixel|RisingOS|g" "${target_path}"/strings.xml
+    sed -i "s|your Pixel|MistOS|g" "${target_path}"/strings.xml &&
+    sed -i "s|Pixel|MistOS|g" "${target_path}"/strings.xml
 done
 
 # Clear the temporary working directory
