@@ -11,34 +11,40 @@ MIST_CODENAME := Nebula
 MIST_RELEASE_TYPE := BETA
 MIST_CODE := $(MIST_VERSION)
 
+MIST_BUILD_TYPE ?= UNOFFICIAL
+
 MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
 
 CURRENT_DEVICE := $(shell echo "$(TARGET_PRODUCT)" | cut -d'_' -f 2,3)
-MAINTAINER_LIST := $(shell cat mist-maintainers/mist.maintainers)
-DEVICE_LIST := $(shell cat mist-maintainers/mist.devices)
+OFFICIAL_MAINTAINERS := $(shell cat mist-maintainers/mist.maintainers)
+OFFICIAL_DEVICES := $(shell cat mist-maintainers/mist.devices)
 
-ifeq ($(filter $(CURRENT_DEVICE),$(DEVICE_LIST)), $(CURRENT_DEVICE))
-    ifdef MIST_MAINTAINER
-        ifneq ($(filter $(MIST_MAINTAINER),$(MAINTAINER_LIST)),)
-            MIST_BUILDTYPE := OFFICIAL
-        else
-        # Builder not an official maintainer, warn and set unofficial
-        $(warning **********************************************************************)
-        $(warning *   There is already an official maintainer for $(MIST_BUILD)    *)
-        $(warning *              Setting build type to UNOFFICIAL                      *)
-        $(warning **********************************************************************)
-            MIST_BUILDTYPE := UNOFFICIAL
-        endif
-    else
-        MIST_BUILDTYPE := UNOFFICIAL
-    endif
+ifeq ($(findstring $(LINEAGE_BUILD), $(OFFICIAL_DEVICES)),)
+  # Device not listed as official
+  MIST_BUILD_TYPE := UNOFFICIAL
 else
+  # Check if builder is an official maintainer
+  ifeq ($(findstring $(MIST_MAINTAINER), $(OFFICIAL_MAINTAINERS)),)
+    # Builder not an official maintainer, warn and set unofficial
+    $(warning **********************************************************************)
+    $(warning *   There is already an official maintainer for $(MIST_BUILD)    *)
+    $(warning *              Setting build type to UNOFFICIAL                      *)
+    $(warning **********************************************************************)
+    MIST_BUILD_TYPE := UNOFFICIAL
+  else
+    # Official maintainer building official device
+    MIST_BUILD_TYPE := OFFICIAL
+  endif
+endif
+
+# Enforce official build for official maintainers on official devices
+ifeq ($(MIST_BUILD_TYPE), OFFICIAL)
+  ifeq ($(findstring $(LINEAGE_BUILD), $(OFFICIAL_DEVICES)),)
     # Shouldn't reach here, error for unexpected situation
     $(error **********************************************************)
     $(error *     A violation has been detected, aborting build      *)
-    $(error *              Switching to Community build              *)
     $(error **********************************************************)
-    MIST_BUILDTYPE := COMMUNITY
+  endif
 endif
 
 ifeq ($(WITH_GMS), true)
@@ -62,6 +68,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.mist.code=$(MIST_CODENAME) \
     ro.mist.packagetype=$(MIST_PACKAGE_TYPE) \
     ro.mist.releasetype=$(MIST_BUILDTYPE) \
+    ro.mist.buildtype=$(MIST_BUILD_TYPE) \
+    ro.mistos.maintainer=$(MIST_MAINTAINER) \
     ro.mist.version?=$(MIST_VERSION) \
     ro.mist.build.version=$(MIST_BUILD_VERSION) \
     ro.mist.display.version?=$(MIST_DISPLAY_VERSION) \
