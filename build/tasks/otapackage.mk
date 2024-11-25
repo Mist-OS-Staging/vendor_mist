@@ -26,6 +26,7 @@ bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(MIST_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).sha256sum
 	$(hide) ./vendor/mist/build/tasks/ascii_output.sh
+	$(hide) ./vendor/mist/build/tools/createjson.sh $(MIST_TARGET_PACKAGE)
 	@echo ""
 	@echo ":·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·:" >&2
 	@echo " Size            : $(shell du -hs $(MIST_TARGET_PACKAGE) | awk '{print $$1}')"
