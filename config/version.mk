@@ -48,11 +48,7 @@ ifeq ($(MIST_BUILD_TYPE), OFFICIAL)
 endif
 
 ifeq ($(WITH_GMS), true)
-	ifeq ($(TARGET_CORE_GMS), true)
-    	MIST_PACKAGE_TYPE ?= CORE
-	else
     	MIST_PACKAGE_TYPE ?= GAPPS
-	endif
 else
     MIST_PACKAGE_TYPE ?= VANILLA
 endif
