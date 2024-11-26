@@ -1,6 +1,6 @@
 # Copyright (C) 2017 Unlegacy-Android
 # Copyright (C) 2017,2020 The LineageOS Project
-# Copyright (C) 2024 risingOS
+# Copyright (C) 2024 MISTOS
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,9 @@ bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(MIST_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).sha256sum
 	$(hide) ./vendor/mist/build/tasks/ascii_output.sh
-	$(hide) ./vendor/mist/build/tools/createjson.sh $(MIST_TARGET_PACKAGE)
+	@echo "Creating json OTA..." >&2
+	$(hide) ./vendor/mist/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) MistOS-$(MIST_BUILD_VERSION).zip $(MIST_VERSION) $(MIST_CODENAME) $(MIST_PACKAGE_TYPE) $(MIST_RELEASE_TYPE)
+	$(hide) cp -f $(PRODUCT_OUT)/$(MIST_PACKAGE_TYPE)_$(TARGET_DEVICE).json vendor/official_devices/$(MIST_PACKAGE_TYPE)_$(TARGET_DEVICE).json
 	@echo ""
 	@echo ":·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·::·.·.·:" >&2
 	@echo " Size            : $(shell du -hs $(MIST_TARGET_PACKAGE) | awk '{print $$1}')"

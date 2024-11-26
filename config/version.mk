@@ -24,10 +24,10 @@ ifeq ($(findstring $(LINEAGE_BUILD), $(OFFICIAL_DEVICES)),)
   MIST_BUILD_TYPE := UNOFFICIAL
 else
   # Check if builder is an official maintainer
-  ifeq ($(findstring $(MIST_MAINTAINER), $(OFFICIAL_MAINTAINERS)),)
+  ifeq ($(findstring $(MISTOS_MAINTAINER), $(OFFICIAL_MAINTAINERS)),)
     # Builder not an official maintainer, warn and set unofficial
     $(warning **********************************************************************)
-    $(warning *   There is already an official maintainer for $(MIST_BUILD)    *)
+    $(warning *   There is already an official maintainer for $(LINEAGE_BUILD)    *)
     $(warning *              Setting build type to UNOFFICIAL                      *)
     $(warning **********************************************************************)
     MIST_BUILD_TYPE := UNOFFICIAL
@@ -65,7 +65,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.mist.packagetype=$(MIST_PACKAGE_TYPE) \
     ro.mist.releasetype=$(MIST_BUILDTYPE) \
     ro.mist.buildtype=$(MIST_BUILD_TYPE) \
-    ro.mistos.maintainer=$(MIST_MAINTAINER) \
+    ro.mistos.maintainer=$(MISTOS_MAINTAINER) \
     ro.mist.version?=$(MIST_VERSION) \
     ro.mist.build.version=$(MIST_BUILD_VERSION) \
     ro.mist.display.version?=$(MIST_DISPLAY_VERSION) \
