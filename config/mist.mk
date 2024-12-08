@@ -24,7 +24,8 @@ PRODUCT_COPY_FILES += \
 # Dexopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     Launcher3QuickStep \
-    NexusLauncherRelease
+    NexusLauncherRelease \
+    Settings
 
 # Product Copy
 PRODUCT_COPY_FILES += \
