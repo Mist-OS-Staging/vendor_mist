@@ -11,7 +11,9 @@ include vendor/mist/config/version.mk
 include vendor/mist/audio/audio.mk
 include vendor/mist/overlays/build.mk
 include vendor/mist/prebuilts/prebuilts.mk
+ifeq ($(WITH_PIXEL_OVERLAYS),true)
 -include vendor/pixeloverlays/config.mk
+endif
 -include vendor/google/mainline_modules/config.mk
 
 
