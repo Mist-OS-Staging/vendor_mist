@@ -1,6 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.plus.android.overlay.systemuioverlay"
-    android:versionCode="1"
-    android:versionName="1.0">
-    <overlay android:targetPackage="com.android.systemui" android:priority="1" android:isStatic="true" />
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="35" android:compileSdkVersionCodename="15" package="com.android.systemui.auto_generated_rro_product__" platformBuildVersionCode="35" platformBuildVersionName="15">
+    <application android:extractNativeLibs="true"/>
+    <overlay android:isStatic="true" android:priority="1" android:targetPackage="com.android.systemui"/>
 </manifest>

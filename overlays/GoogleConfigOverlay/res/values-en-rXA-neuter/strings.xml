@@ -10,5 +10,7 @@
     <string name="config_devicePolicyManagementUpdater">(N)[çöḿ.ĝööĝļé.åñðŕöîð.ĝḿš one two three]</string>
     <string name="config_healthConnectMigratorPackageName">(N)[çöḿ.ĝööĝļé.åñðŕöîð.åþþš.ĥéåļţĥðåţå one two three four]</string>
     <string name="harmful_app_warning_title">(N)[Þļåý Þŕöţéçţ ŵåŕñîñĝ one two three]</string>
+    <string name="identity_check_settings_action">(N)[çöḿ.ĝööĝļé.åñðŕöîð.ĝḿš.þéŕšöñåļšåƒéţý.šéţţîñĝš.ÎÐÉÑŢÎŢÝ_ÇĤÉÇĶ_ŠŴÎŢÇĤ one two three four five six seven eight]</string>
+    <string name="identity_check_settings_package_name">(N)[çöḿ.ĝööĝļé.åñðŕöîð.ĝḿš one two three]</string>
     <string name="safety_protection_display_text">(N)[&lt;font face=\"google-sans\"&gt;Þŕöţéçţéð ɓý &lt;/font&gt;&lt;font face=\"google-sans-medium\"&gt;Åñðŕöîð&lt;/font&gt; one two three]</string>
 </resources>

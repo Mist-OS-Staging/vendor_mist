@@ -10,5 +10,7 @@
     <string name="config_devicePolicyManagementUpdater">(F)‏‮com.google.android.gms‬‏</string>
     <string name="config_healthConnectMigratorPackageName">(F)‏‮com.google.android.apps.healthdata‬‏</string>
     <string name="harmful_app_warning_title">(F)‏‮Play‬‏ ‏‮Protect‬‏ ‏‮warning‬‏</string>
+    <string name="identity_check_settings_action">(F)‏‮com.google.android.gms.personalsafety.settings.IDENTITY_CHECK_SWITCH‬‏</string>
+    <string name="identity_check_settings_package_name">(F)‏‮com.google.android.gms‬‏</string>
     <string name="safety_protection_display_text">(F)‏‮&lt;font‬‏ ‏‮face=\"google-sans\"&gt;Protected‬‏ ‏‮by‬‏ ‏‮&lt;/font&gt;&lt;font‬‏ ‏‮face=\"google-sans-medium\"&gt;Android&lt;/font&gt;‬‏</string>
 </resources>

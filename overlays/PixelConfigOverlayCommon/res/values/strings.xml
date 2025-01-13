@@ -20,6 +20,9 @@
     <string name="config_defaultFieldClassificationService">com.google.android.as/com.google.android.apps.miphone.aiai.app.AutofillFieldClassificationService</string>
     <string name="config_defaultListenerAccessPackages">com.google.android.apps.nexuslauncher:com.google.android.setupwizard:com.google.android.apps.pixelmigrate:com.google.android.as:com.google.android.projection.gearhead:com.google.pixel.exo</string>
     <string name="config_defaultMusicRecognitionService">com.google.android.googlequicksearchbox/com.google.android.apps.search.soundsearch.service.SoundSearchService</string>
+    <string name="config_defaultOnDeviceIntelligenceDeviceConfigNamespace">aicore</string>
+    <string name="config_defaultOnDeviceIntelligenceService">com.google.android.aicore/com.google.android.apps.aicore.service.isolated.AiCoreIntelligenceService</string>
+    <string name="config_defaultOnDeviceSandboxedInferenceService">com.google.android.aicore/com.google.android.apps.aicore.service.isolated.AiCoreIsolatedService</string>
     <string name="config_defaultOnDeviceSpeechRecognitionService">com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiSpeechRecognitionService</string>
     <string name="config_defaultProfcollectReportUploaderAction">com.google.android.apps.betterbug.intent.action.UPLOAD_PROFILE</string>
     <string name="config_defaultProfcollectReportUploaderApp">com.google.android.apps.internal.betterbug</string>
