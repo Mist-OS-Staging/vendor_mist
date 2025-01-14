@@ -35,7 +35,7 @@ if [ -f $existingOTAjson ]; then
 	oem=`grep -n "\"oem\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	device=`grep -n "\"device\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
 	filename=$3
-	download="https://sourceforge.net/projects/project-mistos/files/Android15/$1/${file_name}/download"
+	download="https://sourceforge.net/projects/project-mistos/files/Android15/$1/$3/download"
 	version=`echo $4-$5`
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
@@ -121,6 +121,7 @@ if [ -f $existingOTAjson ]; then
 else
 	filename=$3
 	version=$4-$5
+	download="https://sourceforge.net/projects/project-mistos/files/Android15/$1/$3/download"
 	buildprop=$2/system/build.prop
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
 	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`
@@ -135,13 +136,13 @@ else
 			"oem": "''",
 			"device": "''",
 			"filename": "'$filename'",
-			"download": "",
+			"download": "'$download'",
 			"timestamp": '$timestamp',
 			"md5": "'$md5'",
 			"sha256": "'$sha256'",
 			"size": '$size',
 			"version": "'$version'",
-			"buildtype": "''",
+			"buildtype": "'Stable'",
 			"forum": "''",
 			"gapps": "''",
 			"firmware": "''",
