@@ -6,8 +6,8 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/mist/version
 
 MIST_FLAVOR := VanillaIceCream
-MIST_VERSION := 3.2
-MIST_CODENAME := Rayleigh
+MIST_VERSION := 3.2.1
+MIST_CODENAME := Nimbus
 MIST_RELEASE_TYPE := Stable
 MIST_CODE := $(MIST_VERSION)
 
