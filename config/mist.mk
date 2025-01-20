@@ -6,7 +6,6 @@ ifeq ($(WITH_GMS),true)
 endif
 include vendor/mist/config/properties.mk
 include vendor/mist/config/packages.mk
-include vendor/mist/config/vars.mk
 include vendor/mist/config/version.mk
 include vendor/mist/audio/audio.mk
 include vendor/mist/overlays/build.mk
@@ -45,3 +44,5 @@ TARGET_SHIP_LEGACY_BOOT_ANIMAITON ?= false
 ifeq ($(TARGET_SHIP_LEGACY_BOOT_ANIMAITON),true)
 PRODUCT_COPY_FILES += vendor/mist/prebuilts/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
 endif
+
+$(call inherit-product, vendor/mist/config/vars.mk)

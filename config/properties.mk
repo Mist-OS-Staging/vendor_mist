@@ -84,11 +84,21 @@ PRODUCT_PRODUCT_PROPERTIES += \
     pm.dexopt.ab-ota=speed-profile \
     pm.dexopt.inactive=verify \
     pm.dexopt.cmdline=verify \
-    pm.dexopt.shared=speed \
+    pm.dexopt.shared=quicken \
     pm.dexopt.first-boot=verify \
     pm.dexopt.boot-after-ota=verify \
     dalvik.vm.minidebuginfo=false \
-    dalvik.vm.dex2oat-minidebuginfo=false
+    dalvik.vm.dex2oat-minidebuginfo=false \
+    pm.dexopt.downgrade_after_inactive_days=10 \
+    dalvik.vm.madvise-random=true
+
+# lmk
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.lmk.critical_upgrade=true \
+    ro.lmk.upgrade_pressure=40 \
+    ro.lmk.downgrade_pressure=60 \
+    ro.lmk.kill_heaviest_task=false \
+    ro.lmk.medium=700
 
 # Permissions
 PRODUCT_PRODUCT_PROPERTIES += \
