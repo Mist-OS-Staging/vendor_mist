@@ -109,10 +109,11 @@ endif
 
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.pihooks_mainline_BRAND?=google \
+    persist.sys.pihooks_mainline_BOARD?=caiman \
     persist.sys.pihooks_mainline_DEVICE?=caiman \
     persist.sys.pihooks_mainline_MANUFACTURER?=Google \
     persist.sys.pihooks_mainline_HARDWARE?=caiman \
-    persist.sys.pihooks_mainline_ID?=AP4A.241205.013 \
+    persist.sys.pihooks_mainline_ID?=AP4A.250105.002 \
     persist.sys.pihooks_mainline_PRODUCT?=caiman \
     persist.sys.pihooks_BRAND?=google \
     persist.sys.pihooks_MANUFACTURER?=Google \
@@ -125,5 +126,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsFp="google/cheetah_beta/cheetah:15/BP11.241025.006/12620009:user/release-keys" \
     PihooksGmsModel="Pixel 7 Pro" \
-    PihooksBuildFp="google/caiman/caiman:15/AP4A.241205.013/12621605:user/release-keys" \
+    PihooksBuildFp="google/caiman/caiman:15/AP4A.250105.002/12701944:user/release-keys" \
     PihooksBuildModel="Pixel 9 Pro"
