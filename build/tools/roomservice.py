@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 # Copyright (C) 2012-2013, The CyanogenMod Project
 #           (C) 2017-2018,2020-2021, The LineageOS Project
@@ -47,12 +46,12 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from MistOS Devices Github (https://github.com/MistOS-Devices)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from RisingTechOSS-devices Github (http://github.com/RisingTechOSS-devices)." % device)
 
 repositories = []
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://raw.githubusercontent.com/MistOS-Devices/official_devices/15/devices.xml")
+    githubreq = urllib.request.Request("https://raw.githubusercontent.com/RisingTechOSS-devices/official_devices/fifteen/devices.xml")
     try:
         result = ElementTree.fromstring(urllib.request.urlopen(githubreq, timeout=10).read().decode())
     except urllib.error.URLError:
@@ -145,7 +144,7 @@ def is_in_manifest(projectpath):
         if localpath.get("path") == projectpath:
             return True
 
-    # ... and don't forget the mist snippet
+    # ... and don't forget the rising snippet
     try:
         lm = ElementTree.parse(".repo/manifests/snippets/mist.xml")
         lm = lm.getroot()
@@ -175,7 +174,7 @@ def add_to_manifest(repositories):
         repo_remote = repository.get('remote', 'devices')
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('MistOS Devices/%s already fetched to %s' % (repo_name, repo_target))
+            print('RisingTechOSS-devices/%s already fetched to %s' % (repo_name, repo_target))
             continue
 
         project = ElementTree.Element("project", attrib = {
@@ -252,7 +251,7 @@ def get_default_or_fallback_revision(repo_name):
 
     try:
         stdout = subprocess.run(
-            ["git", "ls-remote", "-h", "https://:@github.com/Mist Devices/" + repo_name],
+            ["git", "ls-remote", "-h", "https://:@github.com/RisingTechOSS-devices/" + repo_name],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         ).stdout.decode()
@@ -307,4 +306,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the MistOS Devices Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in the RisingTechOSS-devices Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
