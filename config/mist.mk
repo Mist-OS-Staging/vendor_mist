@@ -37,6 +37,20 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.launcher.blur.appLaunch=0
 
+# GAPPS
+ifeq ($(WITH_GMS),true)
+$(call inherit-product, vendor/gms/products/gms.mk)
+endif
+
+ifeq ($(TARGET_INCLUDE_NEXUS),true)
+$(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
+PRODUCT_PACKAGES += \
+    GoogleSettingsOverlayNexus
+else
+    PRODUCT_PACKAGES += \
+        SettingsOverlay
+endif
+
 # Cloned app exemption
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml
@@ -81,12 +95,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/android.hardware.biometrics.face.xml
-endif
-
-# GAPPS
-ifeq ($(WITH_GMS),true)
-$(call inherit-product, vendor/gms/products/gms.mk)
-$(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
 endif
 
 # DeviceAsWebcam
