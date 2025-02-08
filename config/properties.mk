@@ -49,6 +49,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.disable=true \
     persist.sys.device_power_mode=default
 
+# Camelot
+PRODUCT_PACKAGES += \
+    Camelot
+
 # Blurs
 ifeq ($(TARGET_ENABLE_BLUR), true)
 PRODUCT_PRODUCT_PROPERTIES += \
