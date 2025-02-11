@@ -48,6 +48,10 @@ endif
 # TFLite service.
 PRODUCT_PACKAGES += libtensorflowlite_jni
 
+# Disable default frame rate limit for games
+PRODUCT_PRODUCT_PROPERTIES += \
+    debug.graphics.game_default_frame_rate.disabled=true
+
 # Allow TFLite service modules to be installed to the system partition
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/lib/libtensorflowlite_jni.so \
