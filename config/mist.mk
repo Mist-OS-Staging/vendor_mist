@@ -17,7 +17,7 @@ endif
 
 # Adblock
 PRODUCT_COPY_FILES += \
-    vendor/rising/etc/adblock/init.adblock.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.adblock.rc
+    vendor/mist/etc/adblock/init.adblock.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.adblock.rc
 
 PRODUCT_SOONG_NAMESPACES += \
     vendor/mist/common
