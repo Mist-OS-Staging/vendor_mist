@@ -6,8 +6,8 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/mist/version
 
 MIST_FLAVOR := VanillaIceCream
-MIST_VERSION := 3.3
-MIST_CODENAME := Avnil
+MIST_VERSION := 3.4
+MIST_CODENAME := Phoenix
 MIST_RELEASE_TYPE := Stable
 MIST_CODE := $(MIST_VERSION)
 
