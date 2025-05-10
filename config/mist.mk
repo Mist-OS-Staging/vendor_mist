@@ -83,6 +83,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/android.hardware.biometrics.face.xml
 endif
 
+# GAPPS
+ifeq ($(WITH_GMS),true)
+$(call inherit-product, vendor/gms/products/gms.mk)
+endif
+
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
     PRODUCT_PACKAGES += \
