@@ -43,8 +43,8 @@ DEBUG = False
 custom_local_manifest = ".repo/local_manifests/roomservice.xml"
 custom_default_revision =  "15.0"
 custom_dependencies = "mist.dependencies"
-org_manifest = "mist"  # leave empty if org is provided in manifest
-org_display = "MistOS"  # needed for displaying
+org_manifest = "MistOS_Devices"  # leave empty if org is provided in manifest
+org_display = "Project MistOS"  # needed for displaying
 
 github_auth = None
 
