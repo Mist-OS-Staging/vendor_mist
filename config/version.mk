@@ -55,7 +55,7 @@ LINEAGE_VERSION := MistOS-$(MIST_VERSION)-$(MIST_RELEASE_TYPE).$(PRODUCT_VERSION
 LINEAGE_DISPLAY_VERSION := MistOS-v$(MIST_VERSION)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(LINEAGE_BUILD)
 
 # Mist properties
-ADDITIONAL_SYSTEM_PROPERTIES += \
+PRODUCT_SYSTEM_PROPERTIES += \
     ro.mist.battery?=$(MIST_BATTERY) \
     ro.mist.code=$(MIST_CODENAME) \
     ro.mist.platform_release_codename=$(MIST_FLAVOR) \
@@ -64,7 +64,7 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.mist.chipset?=$(MIST_CHIPSET) \
     ro.mist.display_resolution?=$(MIST_DISPLAY) \
     ro.mist.display.version=$(LINEAGE_DISPLAY_VERSION) \
-    ro.mist.maintainer=$(MIST_MAINTAINER) \
+    ro.mistos.maintainer=$(MISTOS_MAINTAINER) \
     ro.mist.release.type=$(MIST_BUILD_TYPE) \
     ro.mist.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.modversion=$(MIST_VERSION)
