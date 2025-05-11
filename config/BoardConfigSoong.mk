@@ -50,6 +50,14 @@ lineage_charger_density := $(PRODUCT_AAPT_PREF_CONFIG)
 endif
 $(call soong_config_set,lineage_charger,density,$(lineage_charger_density))
 
+ifneq ($(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB),)
+    $(error TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB is deprecated, please migrate to soong_config_set,camera,needs_client_info_lib)
+endif
+
+ifneq ($(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB_OPLUS),)
+    $(error TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB_OPLUS is deprecated, please migrate to soong_config_set,camera,needs_client_info_lib_oplus)
+endif
+
 # Libui
 ifneq ($(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS),)
     $(call soong_config_set,libui,additional_gralloc_10_usage_bits,$(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS))
