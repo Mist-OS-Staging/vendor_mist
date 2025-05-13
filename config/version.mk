@@ -3,10 +3,15 @@ PRODUCT_VERSION_MINOR = 0
 
 # Increase Mist Version with each major release.
 MIST_FLAVOR := VanillaIceCream
-MIST_VERSION := 3.5
+MIST_VERSION_BASE := 3.5
 MIST_CODENAME := QPR2 Test
 MIST_BUILD_TYPE ?= Unofficial
 
+ifeq ($(WITH_GMS),true)
+MIST_VERSION := $(MIST_VERSION_BASE)-GApps
+else
+MIST_VERSION := $(MIST_VERSION_BASE)-Vanilla
+endif
 
 # Internal version
 LINEAGE_VERSION := MistOS-$(MIST_VERSION)-$(MIST_CODENAME)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date +%Y%m%d)-$(LINEAGE_BUILD)-$(MIST_BUILD_TYPE)

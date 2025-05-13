@@ -12,10 +12,14 @@ endif
 endif
 
 # MistOS Props
-
 ifeq ($(MIST_BUILD_TYPE),OFFICIAL)
 PRODUCT_PACKAGES += \
     Updater
+
+ifeq ($(WITH_GMS),false)
+PRODUCT_PACKAGES += \
+    UpdaterVanillaOverlay
+endif
 endif
 
 # Private keys
