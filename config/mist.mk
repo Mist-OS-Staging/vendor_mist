@@ -1,3 +1,6 @@
+# MistOS packages
+PRODUCT_PACKAGES += \
+    GameSpace
 
 # Face Unlock
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
