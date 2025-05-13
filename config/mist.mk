@@ -1,6 +1,7 @@
 # MistOS packages
 PRODUCT_PACKAGES += \
-    GameSpace
+    GameSpace \
+    OmniStyle
 
 # BtHelper
 PRODUCT_PACKAGES += \
