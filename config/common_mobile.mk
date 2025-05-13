@@ -6,12 +6,18 @@ $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage14.mk)
 include vendor/lineage/config/aosp_audio.mk
 
 # Include Lineage audio files
-include vendor/lineage/config/lineage_audio.mk
+include vendor/lineage/audio.mk
 
 # Default notification/alarm sounds
+ifeq ($(WITH_GMS),true)
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.notification_sound=Argon.ogg \
+    ro.config.notification_sound=23_echo_of_fate.ogg \
+    ro.config.alarm_alert=11_isekai.ogg
+else
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.config.notification_sound=21_oneplus.ogg \
     ro.config.alarm_alert=Hassium.ogg
+endif
 
 # Apps
 PRODUCT_PACKAGES += \
@@ -22,13 +28,8 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images
-
-ifneq ($(WITH_LINEAGE_CHARGER),false)
-PRODUCT_PACKAGES += \
-    lineage_charger_animation \
-    lineage_charger_animation_vendor
-endif
+    product_charger_res_images \
+    product_charger_res_images_vendor
 
 # Legal
 PRODUCT_SYSTEM_PROPERTIES += \
