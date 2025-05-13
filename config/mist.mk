@@ -1,3 +1,6 @@
+# MistOS packages
+PRODUCT_PACKAGES += \
+    GameSpace
 
 # GMS
 WITH_GMS ?= true
