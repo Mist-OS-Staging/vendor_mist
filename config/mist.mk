@@ -2,6 +2,10 @@
 PRODUCT_PACKAGES += \
     GameSpace
 
+# BtHelper
+PRODUCT_PACKAGES += \
+    BtHelper
+
 # GMS
 WITH_GMS ?= true
 ifeq ($(WITH_GMS),true)
