@@ -3,6 +3,11 @@ $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product, vendor/lineage/config/mist.mk)
 $(call inherit-product, vendor/extras/mist.mk)
 
+# VIPERFX
+ifeq ($(TARGET_INCLUDE_VIPERFX),true)
+$(call inherit-product-if-exists, packages/apps/ViPER4AndroidFX/config.mk)
+endif
+
 # Pixel additions
 ifeq ($(WITH_GMS),true)
 $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
