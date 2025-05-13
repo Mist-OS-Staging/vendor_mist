@@ -22,6 +22,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     BtHelper
 
+# Enable blur
+TARGET_ENABLE_BLUR ?= true
+ifeq ($(TARGET_ENABLE_BLUR),true)
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.custom.blur.enable=true
+endif
+
 # Face Unlock
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
 PRODUCT_PACKAGES += \
