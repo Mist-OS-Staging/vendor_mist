@@ -19,8 +19,16 @@ $(call add_soong_config_namespace,lineageVarsPlugin)
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lineageVarsPlugin,$(v))))
 
 SOONG_CONFIG_NAMESPACES += lineageGlobalVars
-SOONG_CONFIG_lineageGlobalVars += \
-    spoof_first_api_level_32
+SOONG_CONFIG_NAMESPACES += lineageVarsPlugin
+
+SOONG_CONFIG_lineageVarsPlugin :=
+
+define addVar
+  SOONG_CONFIG_lineageVarsPlugin += $(1)
+  SOONG_CONFIG_lineageVarsPlugin_$(1) := $($1)
+endef
+
+$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
 # Soong bool variables
 SOONG_CONFIG_lineageGlobalVars_spoof_first_api_level_32 := $(SPOOF_FIRST_API_LEVEL_32)
