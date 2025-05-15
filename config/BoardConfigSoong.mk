@@ -15,10 +15,6 @@ EXPORT_TO_SOONG := \
 # Documentation here:
 # https://github.com/LineageOS/android_build_soong/commit/8328367c44085b948c003116c0ed74a047237a69
 
-$(call add_soong_config_namespace,lineageVarsPlugin)
-$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lineageVarsPlugin,$(v))))
-
-SOONG_CONFIG_NAMESPACES += lineageGlobalVars
 SOONG_CONFIG_NAMESPACES += lineageVarsPlugin
 
 SOONG_CONFIG_lineageVarsPlugin :=
@@ -29,6 +25,10 @@ define addVar
 endef
 
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
+
+SOONG_CONFIG_NAMESPACES += lineageGlobalVars
+SOONG_CONFIG_lineageGlobalVars += \
+    spoof_first_api_level_32
 
 # Soong bool variables
 SOONG_CONFIG_lineageGlobalVars_spoof_first_api_level_32 := $(SPOOF_FIRST_API_LEVEL_32)
