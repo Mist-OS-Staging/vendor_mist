@@ -2,9 +2,10 @@ PRODUCT_VERSION_MAJOR = 15
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Mist Version with each major release.
+MIST_VERSION_DISPLAY := 3.5-Test
 MIST_FLAVOR := VanillaIceCream
 MIST_VERSION_BASE := 3.5
-MIST_CODENAME := QPR2 Test
+MIST_CODENAME := QPR2-Test
 MIST_BUILD_TYPE ?= Unofficial
 
 ifeq ($(WITH_GMS),true)
@@ -17,7 +18,7 @@ endif
 LINEAGE_VERSION := MistOS-$(MIST_VERSION)-$(MIST_CODENAME)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date +%Y%m%d)-$(LINEAGE_BUILD)-$(MIST_BUILD_TYPE)
 
 # Display version
-LINEAGE_DISPLAY_VERSION := v$(MIST_VERSION)-$(MIST_CODENAME)-$(LINEAGE_BUILD)
+LINEAGE_DISPLAY_VERSION := v$(MIST_VERSION)-$(MIST_CODENAME)-$(LINEAGE_BUILD)-$(MIST_BUILD_TYPE)
 
 # LineageOS version properties
 PRODUCT_SYSTEM_PROPERTIES += \
@@ -25,6 +26,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.mist.display.version=$(LINEAGE_DISPLAY_VERSION) \
     ro.mist.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.modversion=$(MIST_VERSION) \
+    ro.mist.version.display=$(MIST_VERSION_DISPLAY) \
     ro.mist.version.base=$(MIST_VERSION_BASE) \
     ro.mistos.maintainer=$(MISTOS_MAINTAINER) \
     ro.mistos.flavor=$(MIST_FLAVOR) \
