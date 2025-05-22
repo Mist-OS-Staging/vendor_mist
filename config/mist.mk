@@ -73,13 +73,13 @@ PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-mist-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-mist-product.xml
 
 # MistOS Props
-PRODUCT_PACKAGES += \
-    Updater
+#PRODUCT_PACKAGES += \
+#    Updater
 
-ifeq ($(WITH_GMS),false)
-PRODUCT_PACKAGES += \
-    UpdaterVanillaOverlay
-endif
+#ifeq ($(WITH_GMS),false)
+#PRODUCT_PACKAGES += \
+#    UpdaterVanillaOverlay
+#endif
 
 # Disable async MTE on a few processes
 PRODUCT_SYSTEM_EXT_PROPERTIES += \

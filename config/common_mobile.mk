@@ -9,15 +9,15 @@ include vendor/lineage/config/aosp_audio.mk
 include vendor/lineage/audio/audio.mk
 
 # Default notification/alarm sounds
-ifeq ($(WITH_GMS),true)
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.notification_sound=23_echo_of_fate.ogg \
-    ro.config.alarm_alert=11_isekai.ogg
-else
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.notification_sound=21_oneplus.ogg \
-    ro.config.alarm_alert=Hassium.ogg
-endif
+#ifeq ($(WITH_GMS),true)
+#PRODUCT_PRODUCT_PROPERTIES += \
+#    ro.config.notification_sound=23_echo_of_fate.ogg \
+#    ro.config.alarm_alert=11_isekai.ogg
+#else
+#PRODUCT_PRODUCT_PROPERTIES += \
+#    ro.config.notification_sound=21_oneplus.ogg \
+#    ro.config.alarm_alert=Hassium.ogg
+#endif
 
 # Apps
 PRODUCT_PACKAGES += \
