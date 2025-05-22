@@ -23,7 +23,7 @@ PRODUCT_PACKAGES += \
     BtHelper
 
 # GMS
-WITH_GMS ?= true
+WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
 ifeq ($(TARGET_USES_MINI_GAPPS),true)
 $(call inherit-product, vendor/gms/gms_mini.mk)
