@@ -28,5 +28,5 @@ $(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ./vendor/lineage/build/tasks/ascii_output.sh
 	@echo "Package Complete: $(LINEAGE_TARGET_PACKAGE)" >&2
 
-.PHONY: mistify
-mistify: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
+.PHONY: bacon
+bacon: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
