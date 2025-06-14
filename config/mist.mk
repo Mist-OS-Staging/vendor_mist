@@ -80,7 +80,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 # Private keys
 ifeq ($(MIST_BUILD_TYPE),OFFICIAL)
-include vendor/mist-priv/keys/keys.mk
+-include vendor/mist-priv/keys/keys.mk
 else
 -include vendor/mist-priv/keys/keys.mk
 endif

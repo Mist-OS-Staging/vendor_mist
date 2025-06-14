@@ -8,6 +8,41 @@ MIST_VERSION_BASE := 3.5
 MIST_CODENAME := Drizzle
 MIST_BUILD_TYPE ?= Unofficial
 
+MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
+
+CURRENT_DEVICE := $(shell echo "$(TARGET_PRODUCT)" | cut -d'_' -f 2,3)
+OFFICIAL_MAINTAINERS := $(shell cat mist-maintainers/mist.maintainers)
+OFFICIAL_DEVICES := $(shell cat mist-maintainers/mist.devices)
+
+ifeq ($(findstring $(LINEAGE_BUILD), $(OFFICIAL_DEVICES)),)
+  # Device not listed as official
+  MIST_BUILD_TYPE := UNOFFICIAL
+else
+  # Check if builder is an official maintainer
+  ifeq ($(findstring $(MISTOS_MAINTAINER), $(OFFICIAL_MAINTAINERS)),)
+    # Builder not an official maintainer, warn and set unofficial
+    $(warning **********************************************************************)
+    $(warning *   There is already an official maintainer for $(LINEAGE_BUILD)    *)
+    $(warning *              Setting build type to UNOFFICIAL                      *)
+    $(warning **********************************************************************)
+    MIST_BUILD_TYPE := UNOFFICIAL
+  else
+    # Official maintainer building official device
+    MIST_BUILD_TYPE := OFFICIAL
+  endif
+endif
+
+# Enforce official build for official maintainers on official devices
+ifeq ($(MIST_BUILD_TYPE), OFFICIAL)
+  ifeq ($(findstring $(LINEAGE_BUILD), $(OFFICIAL_DEVICES)),)
+    # Shouldn't reach here, error for unexpected situation
+    $(error **********************************************************)
+    $(error *     A violation has been detected, aborting build      *)
+    $(error **********************************************************)
+  endif
+endif
+
+
 # Mist Packages
 ifeq ($(WITH_GMS),true)
   ifeq ($(TARGET_USES_MINI_GAPPS), true)
