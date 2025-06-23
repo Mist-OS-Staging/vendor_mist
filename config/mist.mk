@@ -2,6 +2,10 @@
 PRODUCT_PACKAGES += \
     GameSpace
 
+# BtHelper
+PRODUCT_PACKAGES += \
+    BtHelper
+
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
     PRODUCT_PACKAGES += \
