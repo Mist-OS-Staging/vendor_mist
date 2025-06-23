@@ -1,6 +1,7 @@
 # Etc Packages
 PRODUCT_PACKAGES += \
     GameSpace \
+    OmniJaws \
     OmniStyle
 
 # BtHelper
