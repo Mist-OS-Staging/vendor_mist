@@ -1,3 +1,7 @@
+ifeq ($(TARGET_INCLUDE_VIPERFX),true)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+endif
+
 # Etc Packages
 PRODUCT_PACKAGES += \
     GameSpace \
