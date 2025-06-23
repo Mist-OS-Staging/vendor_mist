@@ -1,3 +1,7 @@
+# Etc Packages
+PRODUCT_PACKAGES += \
+    GameSpace
+
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
     PRODUCT_PACKAGES += \
