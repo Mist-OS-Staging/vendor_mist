@@ -26,6 +26,13 @@ ifeq ($(WITH_GMS),true)
   endif
 endif
 
+# Google Overlays
+PRODUCT_PACKAGES += \
+    CustomFontPixelLauncherOverlay \
+    PixelLauncherNoGestureHintOverlay \
+    PixelLauncherOverlayBlur \
+    PixelLauncherOverlayCustom
+
 # Disable async MTE on a few processes
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.android.se=off \
