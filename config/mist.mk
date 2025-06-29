@@ -21,17 +21,17 @@ endif
 # Etc Packages
 PRODUCT_PACKAGES += \
     GameSpace \
-    OmniJaws \
-    OmniStyle
+#    OmniJaws \
+#    OmniStyle
 
 # BtHelper
 PRODUCT_PACKAGES += \
     BtHelper
 
 # LMOFreeForm
-PRODUCT_PACKAGES += \
-    LMOFreeform \
-    LMOFreeformSidebar
+#PRODUCT_PACKAGES += \
+#    LMOFreeform \
+#    LMOFreeformSidebar
 
 # Bypass Charging
 BYPASS_CHARGE_SUPPORTED ?= false
@@ -60,10 +60,10 @@ ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
 endif
 
 # ColumbusService
-ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
-PRODUCT_PACKAGES += \
-    ColumbusService
-endif
+#ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
+#PRODUCT_PACKAGES += \
+#    ColumbusService
+#endif
 
 # Face Unlock
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
