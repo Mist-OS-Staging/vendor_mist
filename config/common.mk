@@ -2,6 +2,7 @@
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product, vendor/lineage/config/mist.mk)
 $(call inherit-product, vendor/extras/mist.mk)
+include vendor/lineage/audio/audio.mk
 
 # Pixel additions
 ifeq ($(WITH_GMS),true)
