@@ -11,6 +11,12 @@ ifeq ($(WITH_GMS),true)
 $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
 $(call inherit-product, vendor/pixel-style/config/common.mk)
 
+# Low ram profile
+TARGET_USE_LOWRAM_PROFILE ?= false
+ifeq ($(TARGET_USE_LOWRAM_PROFILE),true)
+    $(call inherit-product, vendor/lineage/config/defaults_common.mk)
+endif
+
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
