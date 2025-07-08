@@ -6,7 +6,7 @@ $(call inherit-product, vendor/extras/mist.mk)
 # Pixel additions
 ifeq ($(WITH_GMS),true)
 $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
-$(call inherit-product, vendor/pixel-framework/config.mk)
+#$(call inherit-product, vendor/pixel-framework/config.mk)
 $(call inherit-product, vendor/pixel-style/config/common.mk)
 
 # Don't dexpreopt prebuilts. (For GMS).
@@ -187,17 +187,17 @@ PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
 # Extra tools in Lineage
-PRODUCT_PACKAGES += \
-    bash \
-    curl \
-    getcap \
-    htop \
-    nano \
-    setcap \
-    vim
+#PRODUCT_PACKAGES += \
+#    bash \
+#    curl \
+#    getcap \
+#    htop \
+#    nano \
+#    setcap \
+#    vim
 
-PRODUCT_PACKAGES += \
-    nano_recovery
+#PRODUCT_PACKAGES += \
+#    nano_recovery
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/curl \
@@ -235,8 +235,8 @@ PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
-PRODUCT_PACKAGES += \
-    rsync
+#PRODUCT_PACKAGES += \
+#    rsync
 
 # Storage manager
 ifeq ($(WITH_GMS),false)

@@ -21,8 +21,8 @@ endif
 # Etc Packages
 PRODUCT_PACKAGES += \
     GameSpace \
-    OmniJaws \
-    OmniStyle
+#    OmniJaws \
+#    OmniStyle
 
 # BtHelper
 PRODUCT_PACKAGES += \
@@ -60,10 +60,10 @@ ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
 endif
 
 # ColumbusService
-ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
-PRODUCT_PACKAGES += \
-    ColumbusService
-endif
+#ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
+#PRODUCT_PACKAGES += \
+#    ColumbusService
+#endif
 
 # Face Unlock
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
