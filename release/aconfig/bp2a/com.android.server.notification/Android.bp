@@ -12,18 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-<<<<<<< HEAD:release/flag_declarations/Android.bp
-build_flag_declarations {
-    name: "build_flags-build-release-lineage",
-    srcs: [
-        "RELEASE_*.textproto",
-    ],
-=======
 aconfig_values {
-  name: "aconfig-values-bp2a-com.android.window.flags-all",
-  package: "com.android.window.flags",
+  name: "aconfig-values-bp2a-com.android.server.notification-all",
+  package: "com.android.server.notification",
   srcs: [
     "*.textproto",
   ]
->>>>>>> cf77f0bf4 (vendor: fix flag inclusion):release/aconfig/bp2a/com.android.window.flags/Android.bp
 }
