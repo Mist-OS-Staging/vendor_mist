@@ -21,6 +21,7 @@ endif
 # Etc Packages
 PRODUCT_PACKAGES += \
     GameSpace \
+    Updater
 #    OmniJaws \
 #    OmniStyle
 
