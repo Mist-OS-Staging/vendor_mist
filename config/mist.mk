@@ -1,10 +1,15 @@
 PRODUCT_PACKAGES += \
-    Updater \
     GameSpace \
     BtHelper \
     LMOFreeform \
     LMOFreeformSidebar \
     OmniJaws
+
+# Updater
+ifeq ($(MIST_BUILD_TYPE),OFFICIAL)
+    PRODUCT_PACKAGES += \
+        Updater
+endif
 
 # Quick Tap
 TARGET_SUPPORTS_QUICK_TAP ?= true
