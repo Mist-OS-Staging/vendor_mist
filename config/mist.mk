@@ -50,17 +50,22 @@ PRODUCT_PACKAGES += \
     CustomFontPixelLauncherOverlay
 
 # Quick Switch
-TARGET_DEFAULT_PIXEL_LAUNCHER := true
+TARGET_DEFAULT_PIXEL_LAUNCHER ?= true
+ifeq ($(WITH_GMS),true)
 ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
 # Pixel Launcher
 PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=0 \
+    persist.sys.default_launcher=1 \
     persist.sys.quickswitch_pixel_shipped=1
 else
 # Launcher3
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.default_launcher=0 \
     persist.sys.quickswitch_pixel_shipped=0
+endif
+else
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=0
 endif
 
 # Disable touch video heatmap to reduce latency, motion jitter, and CPU usage
