@@ -111,7 +111,7 @@ ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
 include vendor/lineage/config/lineage_sdk_common.mk
 endif
 
-ART_BUILD_TARGET_NDEBUG := false
+ART_BUILD_HOST_DEBUG := false
 ART_BUILD_TARGET_DEBUG := false
 
 # Do not include art debug targets
@@ -164,6 +164,12 @@ PRODUCT_COPY_FILES += \
 # Config
 PRODUCT_PACKAGES += \
     SimpleSettingsConfig
+
+# Debug
+ifeq ($(TARGET_BUILD_VARIANT),user)
+    PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
+    WITH_DEXPREOPT_DEBUG_INFO := false
+endif
 
 # Disable default frame rate limit for games
 PRODUCT_PRODUCT_PROPERTIES += \
