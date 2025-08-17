@@ -12,6 +12,15 @@ ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
         ro.usb.uvc.enabled=true
 endif
 
+# Enable blur
+TARGET_ENABLE_BLUR ?= true
+ifeq ($(TARGET_ENABLE_BLUR),true)
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.custom.blur.enable=true
+endif
+
+PRODUCT_SYSTEM_PROPERTIES += ro.surface_flinger.supports_background_blur=1
+
 # GMS
 WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
