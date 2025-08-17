@@ -5,6 +5,13 @@ PRODUCT_PACKAGES += \
     LMOFreeform \
     LMOFreeformSidebar
 
+# Quick Tap
+TARGET_SUPPORTS_QUICK_TAP ?= true
+ifeq ($(TARGET_SUPPORTS_QUICK_TAP),true)
+PRODUCT_PACKAGES += \
+    ColumbusService
+endif
+
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
     PRODUCT_PACKAGES += \
