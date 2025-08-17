@@ -1,7 +1,8 @@
-# Allow vendor/extra to override any property by setting it first
+# Allow vendor to override any property by setting it first
 $(call inherit-product, vendor/extras/config.mk)
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product, vendor/lineage/config/mist.mk)
+$(call inherit-product, vendor/font/config.mk)
 
 PRODUCT_BRAND ?= MistOS
 
