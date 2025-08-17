@@ -3,7 +3,8 @@ PRODUCT_PACKAGES += \
     GameSpace \
     BtHelper \
     LMOFreeform \
-    LMOFreeformSidebar
+    LMOFreeformSidebar \
+    OmniJaws
 
 # Quick Tap
 TARGET_SUPPORTS_QUICK_TAP ?= true
