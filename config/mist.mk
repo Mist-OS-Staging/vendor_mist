@@ -12,6 +12,20 @@ ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
         ro.usb.uvc.enabled=true
 endif
 
+# GMS
+WITH_GMS ?= false
+ifeq ($(WITH_GMS),true)
+  ifeq ($(TARGET_USES_MINI_GAPPS),true)
+    $(call inherit-product, vendor/gms/gms_mini.mk)
+  else
+    ifeq ($(TARGET_USES_PICO_GAPPS),true)
+      $(call inherit-product, vendor/gms/gms_pico.mk)
+  else
+      $(call inherit-product, vendor/gms/gms_full.mk)
+    endif
+  endif
+endif
+
 # Disable async MTE on a few processes
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.android.se=off \
