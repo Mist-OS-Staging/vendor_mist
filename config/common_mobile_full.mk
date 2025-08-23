@@ -6,11 +6,11 @@ PRODUCT_SIZE := full
 # Apps
 PRODUCT_PACKAGES += \
     Camelot \
-    Etar \
     Profiles \
     Recorder \
     Seedvault \
     Twelve
+#    Etar
 
 ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \
