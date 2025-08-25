@@ -44,6 +44,7 @@ endif
 
 
 # Mist Packages
+WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
   ifeq ($(TARGET_USES_MINI_GAPPS), true)
     MIST_PACKAGE_TYPE ?= MINI
