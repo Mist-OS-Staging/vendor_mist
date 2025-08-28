@@ -21,8 +21,8 @@ endif
 # Etc Packages
 PRODUCT_PACKAGES += \
     GameSpace \
-    OmniStyle
-#    OmniJaws \
+    OmniStyle \
+    OmniJaws
 
 # BtHelper
 PRODUCT_PACKAGES += \
@@ -108,21 +108,3 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.android.nfc=off \
     persist.arm64.memtag.process.system_server=off
 
-# Quick Switch
-TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
-ifeq ($(WITH_GMS),true)
-ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
-# Pixel Launcher
-PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=1 \
-    persist.sys.quickswitch_pixel_shipped=1
-else
-# Launcher3
-PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=0 \
-    persist.sys.quickswitch_pixel_shipped=1
-endif
-else
-PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=0
-endif
