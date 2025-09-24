@@ -7,10 +7,10 @@ ifeq ($(filter $(LINEAGE_BUILD), \
     husky shiba akita felix tangorpro \
     tokay caiman komodo comet tegu \
     mustang blazer frankel rango \
-    stallion \
+    stallion yogi kodiak grizzly cubs \
     ),)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildFingerprint=google/grizzly_beta/grizzly:17/CP41.260828.004.A8/16319058:user/release-keys
+    BuildFingerprint=google/bluejay_beta/bluejay:CANARY/ZP11.260918.007/16484274:user/release-keys
 endif
 endif
 
