@@ -1,9 +1,10 @@
 #!/bin/bash
 #
-# Copyright (C) 2019-2025 crDroid Android Project
+# Copyright (C) 2019-2022 crDroid Android Project
+# Copyright (C) 2024 risingOS Android Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# You may not use this file except in compliance with the License.
+# you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -15,89 +16,108 @@
 # limitations under the License.
 #
 
-#$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=FILE_NAME
-existingOTAjson=./vendor/crDroidOTA/$1.json
+#$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=FILE_NAME, $4=RISING_VERSION, $5=RISING_CODENAME, $6=RISING_PACKAGE_TYPE, $7=RISING_RELEASE_TYPE
+existingOTAjson=./vendor/official_devices/$6/$1.json
 output=$2/$1.json
+major_version=$(echo $4 | cut -d'.' -f1)
 
-# Cleanup old file
+#cleanup old file
 if [ -f $output ]; then
-    rm $output
+	rm $output
 fi
 
 echo "Generating JSON file data for OTA support..."
 
-# Helper function to extract field from JSON
-extract_field() {
-    grep "\"$1\":" "$existingOTAjson" | sed -n "s/.*\"$1\": *\"\([^\"]*\)\".*/\1/p" | xargs
-}
-
 if [ -f $existingOTAjson ]; then
-    # Extract fields from existing JSON or leave empty
-    MAINTAINER=$(extract_field "maintainer")
-    OEM=$(extract_field "oem")
-    DEVICE=$(extract_field "device")
-    BUILDTYPE=$(extract_field "buildtype")
-    FORUM=$(extract_field "forum")
-    GAPPS=$(extract_field "gapps")
-    FIRMWARE=$(extract_field "firmware")
-    MODEM=$(extract_field "modem")
-    BOOTLOADER=$(extract_field "bootloader")
-    RECOVERY=$(extract_field "recovery")
-    PAYPAL=$(extract_field "paypal")
-    TELEGRAM=$(extract_field "telegram")
-    DT=$(extract_field "dt")
-    COMMON_DT=$(extract_field "common-dt")
-    KERNEL=$(extract_field "kernel")
+	#get data from already existing device json
+	#there might be a better way to parse json yet here we try without adding more dependencies like jq
+	maintainer=`grep -n "\"maintainer\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
+	oem=`grep -n "\"oem\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
+	device=`grep -n "\"device\"" $existingOTAjson | cut -d ":" -f 3 | sed 's/"//g' | sed 's/,//g' | xargs`
+	filename=$3
+	download="https://sourceforge.net/projects/project-mistos/files/Android16/$1/$3/download"
+	version=`echo $4-$5`
+	buildprop=$2/system/build.prop
+	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
+	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`
+	md5=`md5sum "$2/$3" | cut -d' ' -f1`
+	sha256=`sha256sum "$2/$3" | cut -d' ' -f1`
+	size=`stat -c "%s" "$2/$3"`
+	buildtype=$7
+	forum=`grep -n "\"forum\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
+	if [ ! -z "$forum" ]; then
+		forum="https:"$forum
+	fi
+	recovery=`grep -n "\"recovery\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
+	if [ ! -z "$recovery" ]; then
+		recovery="https:"$recovery
+	fi
+	paypal=`grep -n "\"paypal\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
+	if [ ! -z "$paypal" ]; then
+		paypal="https:"$paypal
+	fi
+	telegram=`grep -n "\"telegram\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
+	if [ ! -z "$telegram" ]; then
+		telegram="https:"$telegram
+	fi
+
+	echo '{
+	"response": [
+		{
+			"maintainer": "'$maintainer'",
+			"oem": "'$oem'",
+			"device": "'$device'",
+			"filename": "'$filename'",
+			"download": "'$download'",
+			"timestamp": '$timestamp',
+			"md5": "'$md5'",
+			"sha256": "'$sha256'",
+			"size": '$size',
+			"version": "'$version'",
+			"buildtype": "'$buildtype'",
+			"forum": "'$forum'",
+			"recovery": "'$recovery'",
+			"paypal": "'$paypal'",
+			"telegram": "'$telegram'"
+		}
+	]
+}' >> $output
+	cat $output
+else
+	filename=$3
+	version=$4-$5
+	download="https://sourceforge.net/projects/project-mistos/files/Android16/$1/$3/download"
+	buildprop=$2/system/build.prop
+	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
+	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`
+	md5=`md5sum "$2/$3" | cut -d' ' -f1`
+	sha256=`sha256sum "$2/$3" | cut -d' ' -f1`
+	size=`stat -c "%s" "$2/$3"`
+
+	echo '{
+	"response": [
+		{
+			"maintainer": "''",
+			"oem": "''",
+			"device": "''",
+			"filename": "'$filename'",
+			"download": "'$download'",
+			"timestamp": '$timestamp',
+			"md5": "'$md5'",
+			"sha256": "'$sha256'",
+			"size": '$size',
+			"version": "'$version'",
+			"buildtype": "''",
+			"forum": "''",
+			"recovery": "''",
+			"paypal": "''",
+			"telegram": "''"
+		}
+	]
+}' >> $output
+	cat $output
+	echo 'There is no official support for this device yet'
+	echo 'Consider adding official support by Applying'
 fi
 
-# Generate JSON fields
-FILENAME=$3
-VERSION=$(echo "$3" | cut -d'-' -f5 | sed 's/v//')
-V_MAX=$(echo "$VERSION" | cut -d'.' -f1)
-V_MIN=$(echo "$VERSION" | cut -d'.' -f2)
-VERSION="$V_MAX.$V_MIN"
-
-BUILDPROP="$2/system/build.prop"
-TIMESTAMP=$(grep "ro.system.build.date.utc" "$BUILDPROP" | cut -d'=' -f2)
-MD5=$(md5sum "$2/$3" | cut -d' ' -f1)
-SHA256=$(sha256sum "$2/$3" | cut -d' ' -f1)
-SIZE=$(stat -c "%s" "$2/$3")
-
-# Generate JSON output
-cat <<EOF >$output
-{
-    "response": [
-        {
-            "maintainer": "${MAINTAINER:-}",
-            "oem": "${OEM:-}",
-            "device": "${DEVICE:-}",
-            "filename": "$FILENAME",
-            "download": "https://sourceforge.net/projects/crdroid/files/$1/$V_MAX.x/$3/download",
-            "timestamp": $TIMESTAMP,
-            "md5": "$MD5",
-            "sha256": "$SHA256",
-            "size": $SIZE,
-            "version": "$VERSION",
-            "buildtype": "${BUILDTYPE:-}",
-            "forum": "${FORUM:-}",
-            "gapps": "${GAPPS:-}",
-            "firmware": "${FIRMWARE:-}",
-            "modem": "${MODEM:-}",
-            "bootloader": "${BOOTLOADER:-}",
-            "recovery": "${RECOVERY:-}",
-            "paypal": "${PAYPAL:-}",
-            "telegram": "${TELEGRAM:-}",
-            "dt": "${DT:-}",
-            "common-dt": "${COMMON_DT:-}",
-            "kernel": "${KERNEL:-}"
-        }
-    ]
-}
-EOF
-
-if [ ! -f $existingOTAjson ]; then
-    echo "There is no official support for this device yet"
-    echo "Consider adding official support by reading the documentation at https://github.com/crdroidandroid/android_vendor_crDroidOTA/blob/16.0/README.md"
-fi
-
-echo "JSON file generation completed"
+echo ""
