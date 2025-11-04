@@ -90,3 +90,9 @@ ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
     PRODUCT_VENDOR_PROPERTIES += \
         ro.usb.uvc.enabled=true
 endif
+
+# Updater
+ifeq ($(MIST_BUILD_TYPE),OFFICIAL)
+PRODUCT_PACKAGES += \
+    Updater
+endif
