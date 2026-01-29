@@ -33,6 +33,9 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := \
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/preloaded-classes
 
+# Enable Material Design 3 Expressive
+PRODUCT_PRODUCT_PROPERTIES += is_expressive_design_enabled=true
+
 # Disable touch video heatmap to reduce latency, motion jitter, and CPU usage
 # on supported devices with Deep Press input classifier HALs and models
 PRODUCT_PRODUCT_PROPERTIES += \
