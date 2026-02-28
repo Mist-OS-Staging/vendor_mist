@@ -311,10 +311,10 @@ WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
     # GAPPS BUILD
     $(call inherit-product, vendor/gms/products/gms.mk)
-    MIST_PACKAGE_TYPE := GAPPS
+    MIST_PACKAGE_TYPE ?= GAPPS
 else
     # VANILLA BUILD
-    MIST_PACKAGE_TYPE := VANILLA
+    MIST_PACKAGE_TYPE ?= VANILLA
 
 # Custom Overlays
 PRODUCT_PACKAGES += \
@@ -326,4 +326,5 @@ PRODUCT_PACKAGES += \
 else
 PRODUCT_PACKAGES += \
     SettingsOverlay
+endif
 endif
