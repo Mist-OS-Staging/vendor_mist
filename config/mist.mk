@@ -100,7 +100,7 @@ PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 TARGET_OPTIMIZED_DEXOPT ?= false
 ifeq ($(TARGET_OPTIMIZED_DEXOPT),true)
     PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := speed-profile
-    PRODUCT_SYSTEM_PROPERTIES += \
+    PRODUCT_PRODUCT_PROPERTIES += \
         pm.dexopt.post-boot=speed-profile \
         pm.dexopt.first-boot=verify \
         pm.dexopt.boot-after-ota=verify \

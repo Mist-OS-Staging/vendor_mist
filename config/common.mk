@@ -5,6 +5,7 @@ $(call inherit-product-if-exists, vendor/extras/config.mk)
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product-if-exists, vendor/fontbox/config.mk)
 $(call inherit-product-if-exists, vendor/certification/config.mk)
+$(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
 
 ifeq ($(WITH_BCR),true)
 $(call inherit-product, vendor/bcr/bcr.mk)
@@ -131,10 +132,10 @@ $(call enforce-product-packages-exist-internal,$(lastword $(_include_stack)),pro
 endif
 
 # Charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    product_charger_res_images \
-    product_charger_res_images_vendor
+#PRODUCT_PACKAGES += \
+#    charger_res_images \
+#    product_charger_res_images \
+#    product_charger_res_images_vendor
 
 # Lineage interfaces
 PRODUCT_PACKAGES += \
@@ -226,9 +227,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     rsync
 
+ifeq ($(WITH_GMS),false)
 # Storage manager
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.storage_manager.enabled=true
+endif
 
 # These packages are excluded from user builds
 PRODUCT_PACKAGES_DEBUG += \
@@ -307,23 +310,24 @@ include vendor/lineage/config/version.mk
 -include vendor/lineage/config/partner_gms.mk
 
 # GMS
-WITH_GMS ?= false
-ifeq ($(WITH_GMS),true)
-    $(call inherit-product, vendor/gms/products/gms.mk)
-    MIST_PACKAGE_TYPE ?= GAPPS
-else
+#WITH_GMS ?= false
+#ifeq ($(WITH_GMS),true)
+#    $(call inherit-product, vendor/gms/products/gms.mk)
+#    MIST_PACKAGE_TYPE ?= GAPPS
+#else
     # VANILLA BUILD
-    MIST_PACKAGE_TYPE ?= VANILLA
+#    MIST_PACKAGE_TYPE ?= VANILLA
 
 # Custom Overlays
-PRODUCT_PACKAGES += \
-    PixelLauncherOverlayCustom
+#PRODUCT_PACKAGES += \
+#    PixelLauncherOverlayCustom
 
-ifeq ($(WITH_GMS),true)
+#ifeq ($(WITH_GMS),true)
+#PRODUCT_PACKAGES += \
+#    SettingsOverlayPixelThemePicker
+#else
 PRODUCT_PACKAGES += \
-    SettingsOverlayPixelThemePicker
-else
-PRODUCT_PACKAGES += \
-    SettingsOverlay
-endif
-endif
+    SettingsOverlay \
+    WallpaperOverlay
+#endif
+#endif
