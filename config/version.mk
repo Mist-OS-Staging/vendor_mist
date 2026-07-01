@@ -1,15 +1,11 @@
-<<<<<<< HEAD
-PRODUCT_VERSION_MAJOR = 24
-=======
-PRODUCT_VERSION_MAJOR = 16
->>>>>>> 0052302a (build: Ship as MistOS based on LOS)
+PRODUCT_VERSION_MAJOR = 17
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Mist Version with each major release.
-MIST_VERSION_DISPLAY := 4.5-QPR2
-MIST_FLAVOR := Baklava
-MIST_VERSION_BASE := 4.5
-MIST_CODENAME := QPR2
+MIST_VERSION_DISPLAY := 5.0-Alpha
+MIST_FLAVOR := Cinnamon Bun
+MIST_VERSION_BASE := 5.0
+MIST_CODENAME := Alpha
 MIST_BUILD_TYPE ?= Unofficial
 
 MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
@@ -47,18 +43,14 @@ ifeq ($(MIST_BUILD_TYPE), OFFICIAL)
 endif
 
 
-# Mist Packages
-#ifeq ($(WITH_GMS),true)
-#  ifeq ($(TARGET_USES_MINI_GAPPS), true)
-#    MIST_PACKAGE_TYPE ?= MINI
-#  else ifeq ($(TARGET_USES_PICO_GAPPS), true)
-#    MIST_PACKAGE_TYPE ?= PICO
-#  else
-#    MIST_PACKAGE_TYPE ?= GAPPS
-#  endif
-#else
-#  MIST_PACKAGE_TYPE ?= VANILLA
-#endif
+# GMS
+WITH_GMS ?= false
+ifeq ($(WITH_GMS),true)
+    $(call inherit-product, vendor/gms/products/gms.mk)
+    MIST_PACKAGE_TYPE := GAPPS
+else
+    MIST_PACKAGE_TYPE := VANILLA
+endif
 
 # Internal version
 LINEAGE_VERSION := MistOS-$(MIST_VERSION_BASE)-$(MIST_CODENAME)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(MIST_PACKAGE_TYPE)-$(shell date +%Y%m%d-%H%M)-$(LINEAGE_BUILD)-$(MIST_BUILD_TYPE)
