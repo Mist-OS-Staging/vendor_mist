@@ -46,7 +46,9 @@ endif
 # GMS
 WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
-    $(call inherit-product, vendor/gms/products/gms.mk)
+    $(call inherit-product, vendor/pixel/gms/products/gms.mk)
+    $(call inherit-product, vendor/pixel/prebuilts/config.mk)
+    $(call inherit-product, vendor/pixel/sounds/products/sounds.mk)
     MIST_PACKAGE_TYPE := GAPPS
 else
     MIST_PACKAGE_TYPE := VANILLA
