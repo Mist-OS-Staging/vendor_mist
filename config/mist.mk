@@ -49,6 +49,3 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     dalvik.vm.dex2oat64.enabled=true
 
-# Extra packages
-PRODUCT_PACKAGES += \
-    MatLog
