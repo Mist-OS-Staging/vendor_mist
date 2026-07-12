@@ -1,3 +1,7 @@
+# BuildFingerprint spoof to fix RCS/Wallet
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260618.005/15760424:user/release-keys
+
 # Additional props
 PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.debug.alloc=0 \
