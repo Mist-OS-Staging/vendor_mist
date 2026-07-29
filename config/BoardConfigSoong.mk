@@ -30,16 +30,6 @@ endef
 
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
-# Bootanimation
-TARGET_BOOTANIMATION_HALF_RES ?= false
-$(call soong_config_set,lineage_bootanimation,height,$(TARGET_SCREEN_HEIGHT))
-$(call soong_config_set,lineage_bootanimation,width,$(TARGET_SCREEN_WIDTH))
-$(call soong_config_set,lineage_bootanimation,half_res,$(TARGET_BOOTANIMATION_HALF_RES))
-
-ifneq ($(TARGET_BOOTANIMATION),)
-$(call soong_config_set,lineage_bootanimation,prebuilt_file,$(TARGET_BOOTANIMATION))
-endif
-
 # Charger
 lineage_charger_density := mdpi
 ifneq (,$(TARGET_SCREEN_DENSITY))
