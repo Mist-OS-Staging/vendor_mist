@@ -6,6 +6,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     BtHelper
 
+# ColumbusService
+ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
+PRODUCT_PACKAGES += \
+    ColumbusService
+endif
+
 # Face Unlock
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS),true)
 PRODUCT_PACKAGES += \
