@@ -10,7 +10,7 @@ ifeq ($(filter $(LINEAGE_BUILD), \
     stallion \
     ),)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260618.005/15760424:user/release-keys
+    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260717.006/16004061:user/release-keys
 endif
 endif
 
