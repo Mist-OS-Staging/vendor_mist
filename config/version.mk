@@ -2,10 +2,10 @@ PRODUCT_VERSION_MAJOR = 17
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Mist Version with each major release.
-MIST_VERSION_DISPLAY := 5.1-Beta
+MIST_VERSION_DISPLAY := 5.3-Stable
 MIST_FLAVOR := Cinnamon Bun
-MIST_VERSION_BASE := 5.1
-MIST_CODENAME := Beta
+MIST_VERSION_BASE := 5.2
+MIST_CODENAME := Stable
 MIST_BUILD_TYPE ?= Unofficial
 
 MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
